@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Application Status</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Your Application Status</h2>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary btn-sm">Home</a>
+    </div>
+
+    {% if student %}
+    <div class="card p-4 shadow" style="max-width: 600px; margin: 0 auto;">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label text-muted">Student ID</label>
+                <p class="h5">{{ student[0] }}</p>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label text-muted">Name</label>
+                <p class="h5">{{ student[1] }}</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label text-muted">Email</label>
+                <p class="h5">{{ student[2] }}</p>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label text-muted">Status</label>
+                <p>
+                    {% if student[3] == 'Approved' %}
+                        <span class="badge bg-success p-2" style="font-size: 1rem;">✓ Approved</span>
+                    {% elif student[3] == 'Rejected' %}
+                        <span class="badge bg-danger p-2" style="font-size: 1rem;">✗ Rejected</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark p-2" style="font-size: 1rem;">⏳ Pending</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        {% if student[3] == 'Approved' %}
+        <div class="alert alert-success" role="alert">
+            <strong>Congratulations!</strong> Your application has been approved. Welcome to our institution!
+        </div>
+        {% elif student[3] == 'Rejected' %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Update:</strong> Unfortunately, your application has been rejected. Please contact us for more information.
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            <strong>Status:</strong> Your application is under review. Please check back later for updates.
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
