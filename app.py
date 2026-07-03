@@ -3,7 +3,8 @@ import sqlite3
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+# Use a stable secret key from environment in production so session cookies validate across instances
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-please-change')
 DATABASE = os.path.join(os.path.dirname(__file__), 'college.db')
 
 def get_db_connection():
