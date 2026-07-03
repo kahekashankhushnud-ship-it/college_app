@@ -21,6 +21,31 @@ body.auth-page {
     color: #1d263b;
 }
 
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+}
+
+.auth-card h2 {
+    color: #111827;
+    font-weight: 700;
+}
+
+.auth-card .alert {
+    border-radius: 12px;
+}
+
 /* Custom Button Styles */
 .btn-custom {
     border-radius: 25px;
